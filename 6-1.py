@@ -1,36 +1,40 @@
 class Animal:
-    alive = True
-    fed = False
     def __init__(self, name):
         self.name = name
+        self.alive = True
+        self.fed = False
 
-class Mammal(Animal):
     def eat(self, food):
-        if Fruit.edible == True:
-            print(f'{self.name} съел {food.name}')
-            Animal.fed = True
-        else:
+        if not food.edible:
             print(f'{self.name} не стал есть {food.name}')
-            Animal.alive = False
+            self.alive = False
+        else:
+            print(f'{self.name} съел {food.name}')
+            self.fed = True
 
-class Predator(Animal):
-    def eat(self, food):
-        if Flower.edible == True:
-            print(f'{self.name} съел {food.name}')
-            Animal.fed = True
-        else:
-            print(f'{self.name} не стал есть {food.name}')
-            Animal.alive = False
 
 class Plant:
     edible = False
+
     def __init__(self, name):
         self.name = name
 
+
+class Mammal(Animal):
+    pass
+
+
+class Predator(Animal):
+    pass
+
+
 class Flower(Plant):
-    edible = False
+    pass
+
+
 class Fruit(Plant):
     edible = True
+
 
 a1 = Predator('Волк с Уолл-Стрит')
 a2 = Mammal('Хатико')
@@ -46,3 +50,5 @@ a1.eat(p1)
 a2.eat(p2)
 print(a1.alive)
 print(a2.fed)
+
+# Что произошло: Хищник попытался съесть цветок и погиб, млекопитающее съел
